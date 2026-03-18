@@ -17,6 +17,9 @@ if errorlevel 1 (
   )
 )
 
+echo Refreshing environment variables...
+powershell -NoProfile -ExecutionPolicy Bypass -Command "Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1; refreshenv"
+
 echo Running ADC login...
 call gcloud auth application-default login
 if errorlevel 1 (
