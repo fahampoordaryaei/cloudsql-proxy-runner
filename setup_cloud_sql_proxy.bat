@@ -41,3 +41,4 @@ echo Starting Cloud SQL Proxy on port 5433...
 "%PROXY_EXE%" --auto-iam-authn --port 5433 makecents-b0fb9:europe-west1:makecents-b0fb9-database
 
 endlocal
+
