@@ -1,25 +1,6 @@
 @echo off
 setlocal
 
-where gcloud >nul 2>&1
-if errorlevel 1 (
-  echo gcloud not found. Installing Google Cloud SDK...
-  where winget >nul 2>&1
-  if errorlevel 1 (
-    echo winget is not available. Install Google Cloud SDK manually:
-    echo https://cloud.google.com/sdk/docs/install
-    exit /b 1
-  )
-  winget install --id Google.CloudSDK --exact --source winget --accept-source-agreements --accept-package-agreements
-  if errorlevel 1 (
-    echo Failed to install Google Cloud SDK.
-    exit /b 1
-  )
-)
-
-echo Refreshing environment variables...
-powershell -NoProfile -ExecutionPolicy Bypass -Command "Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1; refreshenv"
-
 echo Running ADC login...
 call gcloud auth application-default login
 if errorlevel 1 (
